@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>炸金花游戏 · 信息卡片介绍</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      background: #f5f7fa;
+      color: #1f2937;
+      line-height: 1.6;
+    }
+
+    /* 深色头图 */
+    .hero {
+      background: linear-gradient(145deg, #0b1721 0%, #1a2a3a 100%);
+      padding: 4rem 2rem 3.5rem;
+      text-align: center;
+      color: #e6edf5;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 40px;
+      background: #f5f7fa;
+      border-radius: 30px 30px 0 0;
+    }
+
+    .hero h1 {
+      font-size: 2.8rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.75rem;
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+      max-width: 600px;
+      margin: 0 auto 1.2rem;
+      opacity: 0.9;
+      font-weight: 300;
+    }
+
+    .hero .badge {
+      display: inline-block;
+      background: rgba(255, 185, 55, 0.2);
+      color: #fcd34d;
+      padding: 0.25rem 1rem;
+      border-radius: 40px;
+      font-size: 0.9rem;
+      border: 1px solid rgba(255, 185, 55, 0.25);
+    }
+
+    /* 正文浅色区 */
+    .container {
+      max-width: 1100px;
+      margin: -1rem auto 3rem;
+      padding: 0 1.5rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* 信息卡片网格 */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+      gap: 1.8rem;
+      margin: 2.5rem 0;
+    }
+
+    .card {
+      background: #ffffff;
+      border-radius: 28px;
+      padding: 2rem 1.6rem;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04), 0 1px 3px rgba(0, 0, 0, 0.03);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      border: 1px solid #eef1f5;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.06);
+    }
+
+    .card h3 {
+      font-size: 1.4rem;
+      font-weight: 600;
+      margin-bottom: 0.9rem;
+      color: #111827;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .card h3 .emoji {
+      font-size: 1.5rem;
+    }
+
+    .card p {
+      font-size: 0.95rem;
+      color: #374151;
+      margin-bottom: 0.8rem;
+    }
+
+    .card ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .card ul li {
+      padding: 0.3rem 0 0.3rem 1.2rem;
+      position: relative;
+      font-size: 0.9rem;
+      color: #4b5563;
+    }
+
+    .card ul li::before {
+      content: '•';
+      color: #2563eb;
+      font-weight: bold;
+      position: absolute;
+      left: 0;
+    }
+
+    /* 强调色链接 */
+    a {
+      color: #2563eb;
+      text-decoration: none;
+      font-weight: 500;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.2s;
+    }
+
+    a:hover {
+      border-bottom-color: #2563eb;
+    }
+
+    /* 自然链接段落 */
+    .link-paragraph {
+      background: #ffffff;
+      border-radius: 28px;
+      padding: 2rem 2rem 1.8rem;
+      margin: 2rem 0;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+      border: 1px solid #eef1f5;
+      font-size: 1rem;
+    }
+
+    .link-paragraph p {
+      margin-bottom: 1rem;
+    }
+
+    .faq-summary {
+      background: #f9fafc;
+      border-radius: 20px;
+      padding: 1.6rem 2rem;
+      margin: 2.2rem 0 1rem;
+      border-left: 4px solid #2563eb;
+    }
+
+    .faq-summary h4 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #1e293b;
+      margin-bottom: 0.5rem;
+    }
+
+    .faq-summary p {
+      font-size: 0.92rem;
+      color: #475569;
+    }
+
+    .small-note {
+      font-size: 0.85rem;
+      color: #6b7280;
+      text-align: center;
+      margin: 2.8rem 0 1.2rem;
+      border-top: 1px solid #dde3ea;
+      padding-top: 1.8rem;
+    }
+
+    /* 响应式 */
+    @media (max-width: 640px) {
+      .hero h1 {
+        font-size: 2rem;
+      }
+
+      .hero {
+        padding: 3rem 1.2rem 2.8rem;
+      }
+
+      .container {
+        padding: 0 1rem;
+      }
+
+      .card {
+        padding: 1.5rem 1.2rem;
+      }
+
+      .link-paragraph {
+        padding: 1.5rem 1.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 深色头图 -->
+  <header class="hero">
+    <h1>再次相遇 · 炸金花</h1>
+    <p>一张卡片页，为你整理关于经典玩法的信息与思路。</p>
+    <span class="badge">收藏 · 持续关注</span>
+  </header>
+
+  <main class="container">
+
+    <!-- 用途卡片 -->
+    <div class="card-grid">
+      <div class="card">
+        <h3><span class="emoji">🎯</span> 玩法卡片</h3>
+        <p>炸金花（又称赢三张）是一种比牌型、拼胆量的扑克游戏，规则简明，节奏张弛有度。适合熟人之间快速开局，也适合在线匹配切磋。</p>
+        <ul>
+          <li>豹子 &gt; 同花顺 &gt; 金花 &gt; 顺子 &gt; 对子 &gt; 散牌</li>
+          <li>可加注、比牌、弃牌，心理博弈是乐趣核心</li>
+          <li>单局耗时短，适合碎片时间</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3><span class="emoji">🧩</span> 常见场景</h3>
+        <p>不论线上还是线下，炸金花都能快速拉近气氛。以下是一些典型使用情境：</p>
+        <ul>
+          <li>朋友聚会、休闲娱乐的破冰环节</li>
+          <li>通勤、午休时的轻量对战</li>
+          <li>牌类爱好者的日常练习与交流</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3><span class="emoji">👥</span> 适合人群</h3>
+        <p>无论你是新手还是老玩家，都能在牌局中找到自己的节奏：</p>
+        <ul>
+          <li>喜欢策略与概率计算的逻辑派</li>
+          <li>享受紧张刺激心理战的体验派</li>
+          <li>寻找简单上手、重开性高的牌类玩家</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 自然链接段落（再次访问 + 收藏角度） -->
+    <div class="link-paragraph">
+      <p>如果你之前来过这里，或者正在考虑把这款游戏加入日常收藏夹，不妨直接了解 <a href="https://official-goldenflowergames.com">炸金花游戏</a> 的最新动态。页面中整理了基础规则、牌型概率以及常见问题，适合在开局前快速参考。</p>
+      <p>持续关注这个站点，你还可以看到后续更新中对局记录、策略思路等内容。把它加入书签，下次想玩的时候不用再从头找起。</p>
+    </div>
+
+    <!-- FAQ 摘要卡片（克制、真实） -->
+    <div class="faq-summary">
+      <h4>❓ 常见疑问摘要</h4>
+      <p><strong>炸金花和德州扑克有什么区别？</strong> 炸金花使用一副牌去除大小王，每位玩家发三张，比牌型大小；下注方式更直接，心理博弈占比高。两者各有侧重，但炸金花的上手门槛更低。</p>
+      <p style="margin-top: 0.6rem;"><strong>需要记复杂的概率吗？</strong> 了解基本牌型强弱即可，实战中观察对手、控制节奏往往比纯概率更重要。多打几局自然会有感觉。</p>
+    </div>
+
+    <!-- 一句提示 / 收藏提醒 -->
+    <div class="small-note">
+      ⚡ 再次访问 · 收藏本站 · 持续关注 —— 常玩常新
+    </div>
+
+  </main>
+
+</body>
+</html>
